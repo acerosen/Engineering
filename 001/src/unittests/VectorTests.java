@@ -22,7 +22,7 @@ public class VectorTests extends TestCase {
 		Vector vec = new Vector(1, 2, 3);
 		Vector vec2 = new Vector(5, 5, 5);
 		Vector result = new Vector(4, 3, 2);
-		assertEquals(result, vec.subtract(vec2));
+		assertEquals(result, vec2.subtract(vec));
 	}
 }
 

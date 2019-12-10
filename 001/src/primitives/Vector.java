@@ -134,8 +134,15 @@ public class Vector {
 	 * @return boolean
 	 * @description checks if two vectors are equal
 	 */
-	public boolean equals(Vector vec) {
-		return (_head.equals(vec._head));
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null)
+			return false;
+		if (!(o instanceof Vector ))
+			return false;
+		Vector vec = (Vector) o;
+		return _head.equals(vec._head);
 	}
 
 	/**

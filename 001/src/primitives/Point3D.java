@@ -126,34 +126,21 @@ public class Point3D {
 	// ***************** Administration ******************** //
 	/**
 	 * @name equals
-	 * @param _point
+	 * @param o
 	 * @return boolean
 	 * @description checks if two points are equal
 	 */
-	public boolean equals(Point3D _point) {
-		if (this == _point)
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
 			return true;
-		if (_point == null)
+		if (o == null)
 			return false;
-		if (getClass() != _point.getClass())
+		if (!(o instanceof Point3D ))
 			return false;
-		Point3D other = (Point3D) _point;
-		if (_x == null) {
-			if (other._x != null)
-				return false;
-		} else if (!_x.equals(other._x))
-			return false;
-		if (_y == null) {
-			if (other._y != null)
-				return false;
-		} else if (!_y.equals(other._y))
-			return false;
-		if (_z == null) {
-			if (other._z != null)
-				return false;
-		} else if (!_z.equals(other._z))
-			return false;
-		return true;
+		Point3D other = (Point3D) o;
+		return (_x.equals(other._x)) && (_y.equals(other._y)) && (_z.equals(other._z));
+
 	}
 
 	/**
