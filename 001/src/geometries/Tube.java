@@ -36,7 +36,7 @@ public class Tube extends RadialGeometry implements Geometry {
 	 */
 	@Override
 	public Vector getNormal(Point3D point) {
-		double dist = _axisRay.getP0().distance2(point);
+		double dist = _axisRay.getP0().squaredDistance(point);
 		Vector vec = _axisRay.getDir().scale(Math.sqrt(dist - _radius * _radius));
 		Point3D center = _axisRay.getP0().add(vec);
 		return point.subtract(center).normal();
