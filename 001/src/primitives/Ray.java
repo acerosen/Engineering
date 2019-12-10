@@ -1,9 +1,10 @@
 package primitives;
 
 /**
+ * Class contains ray in Euclidian space represented using base point p0 and
+ * direction vector
  * 
  * @author eytan
- *
  */
 
 public class Ray {
@@ -12,9 +13,11 @@ public class Ray {
 
 	// ***************** Constructors ********************** //
 	/**
-	 * @name Ray
-	 * @param p0
-	 * @param dir
+	 * Builds ray using Base point p0 and direction vector
+	 * 
+	 * @param p0  basepoint
+	 * @param dir vector
+	 * @return ray
 	 */
 	public Ray(Point3D p0, Vector dir) {
 		this.p0 = p0;
@@ -23,38 +26,29 @@ public class Ray {
 
 	// ***************** Getters/Setters ********************** //
 	/**
-	 * @name getHead
-	 * @return Point3D
-	 */
-	public Point3D get() {
-		return (getDir().getHead());
-	}	
-	/**
-	 * @name getP0
-	 * @return p0
+	 * Gets base point p0
+	 * @return p0 base point
 	 */
 	public Point3D getP0() {
 		return p0;
 	}
+
 	/**
-	 * @name getDir
-	 * @return dir
+	 * Gets direction vector
+	 * @return dir vector
 	 */
 	public Vector getDir() {
 		return dir;
 	}
+
 	// ***************** Administration ******************** //
 	/**
-	 * @name toString
+	 * Returns ray in string form
 	 * @return String
 	 */
 	@Override
 	public String toString() {
 		return "[" + getP0() + getDir();
 	}
-
-
-
-
 
 }
