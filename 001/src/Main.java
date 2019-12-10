@@ -21,7 +21,7 @@ public class Main {
 		System.out.println("Sub: " + _p3.subtract(_p2).toString());
 		// Distance Test
 		double Dist = _p2.distance(_p3);
-		double sqrDist = _p2.distance2(_p3);
+		double sqrDist = _p2.squaredDistance(_p3);
 		System.out.println("Distance: " + Dist);
 		System.out.println("Squared distance: " + sqrDist);
 
