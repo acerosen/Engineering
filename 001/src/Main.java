@@ -41,7 +41,7 @@ public class Main {
 		// Cross Product
 		System.out.println("Cross: " + vec.cross(vec2).toString());
 		// Get Normal
-		System.out.println("Normalized: " + vec2.normal().toString());
+		System.out.println("Normalized: " + vec2.normalized().toString());
 		// Equals
 		System.out.println("Equals (expected false): " + vec.equals(vec2));
 		System.out.println("Equals (expected true): " + vec2.equals(vec3));

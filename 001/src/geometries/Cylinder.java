@@ -42,7 +42,7 @@ public class Cylinder extends Tube {
         // point on the ray and plane crossing P and orthogonal to the ray
         if ((t)==0 || (t - this._height)==0)
             return v;
-        return p.subtract(p0.add(v.scale(t))).normal();
+        return p.subtract(p0.add(v.scale(t))).normalized();
     }
 
 }

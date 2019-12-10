@@ -113,7 +113,7 @@ public class Point3D {
 	}
 
 	/**
-	 * Calculates distance between two points, and returns the distance without the
+	 * Calculates distance between two points, and returns the distance before the
 	 * square root
 	 * @param other point used to calculate distance
 	 * @return double distance without square root

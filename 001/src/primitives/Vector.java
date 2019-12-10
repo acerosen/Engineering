@@ -1,9 +1,12 @@
 package primitives;
 
+import java.lang.Math;
+
 /**
+ * Class contains vector in Euclidian space represented using Cartesian
+ * coordinates
  * 
  * @author eytan
- *
  */
 
 public class Vector {
@@ -11,34 +14,37 @@ public class Vector {
 
 	// ***************** Constructors ********************** //
 	/**
-	 * @param vector
-	 * @return Vector
+	 * Creates copy of vector
+	 * 
+	 * @param vector to be copied
+	 * @return copy of vector
 	 */
-
 	Vector(Vector vector) {
 		_head = new Point3D(vector._head);
 	}
 
 	/**
-	 * @name Vector
-	 * @param x
-	 * @param y
-	 * @param z
-	 * @return Vector
+	 * Builds Vector using three coordinate type values
+	 * 
+	 * @param x coordinate
+	 * @param y coordinate
+	 * @param z coordinate
+	 * @return Vector with x,y,z as values
 	 */
-
 	public Vector(Coordinate x, Coordinate y, Coordinate z) {
 		_head = new Point3D(x, y, z);
 		if (Point3D.ZERO.equals(_head))
 			throw new IllegalArgumentException("Zero vector");
 	}
-	/**
-	 * @name Vector
-	 * @param x
-	 * @param y
-	 * @param z
-	 */
 
+	/**
+	 * Builds Vector using values of three coordinates
+	 * 
+	 * @param x coordinate value
+	 * @param y coordinate value
+	 * @param z coordinate value
+	 * @return Vector with x,y,z as values
+	 */
 	public Vector(double x, double y, double z) {
 		_head = new Point3D(x, y, z);
 		if (Point3D.ZERO.equals(_head))
@@ -47,8 +53,9 @@ public class Vector {
 
 	// ***************** Getters/Setters ********************** //
 	/**
-	 * @name getHead
-	 * @return _head
+	 * Gets head of vector
+	 * 
+	 * @return _head, Point3D at head of vector
 	 */
 	public Point3D getHead() {
 		return _head;
@@ -56,10 +63,29 @@ public class Vector {
 
 	// ***************** Operations ******************** //
 	/**
-	 * @name add
-	 * @param vec
-	 * @return Vector
-	 * @description adds 2 vectors and returns result vector
+	 * Calculates length of vector before square root
+	 * 
+	 * @return length before square root
+	 */
+	public double squaredLength() {
+		return (_head.getX().get() * _head.getX().get()) + (_head.getY().get() * _head.getY().get())
+				+ (_head.getZ().get() * _head.getZ().get());
+	}
+
+	/**
+	 * Calculates length of vector
+	 * 
+	 * @return length
+	 */
+	public double length() {
+		return Math.sqrt(squaredLength());
+	}
+
+	/**
+	 * Creates vector whose values are the sums of two other vectors
+	 * 
+	 * @param vec which is added to reference vector
+	 * @return Vector which contains sum values
 	 */
 	public Vector add(Vector vec) {
 		double x = _head.getX().get() + vec._head.getX().get();
@@ -69,84 +95,90 @@ public class Vector {
 	}
 
 	/**
-	 * @name vectorSubtraction
-	 * @param _vector
-	 * @return Vector
-	 * @description adds 2 vectors and returns result vector
+	 * Creates vector whose values are the difference of two other vectors
+	 * 
+	 * @param vec which is subtracted from reference vector
+	 * @return Vector which contains difference values
 	 */
-	public Vector subtract(Vector _vector) {
-		return new Vector((_head.getX().subtract(_vector._head.getX())), (_head.getY().subtract(_vector._head.getY())),
-				(_head.getZ().subtract(_vector._head.getZ())));
+	public Vector subtract(Vector vec) {
+		return new Vector((_head.getX().subtract(vec._head.getX())), (_head.getY().subtract(vec._head.getY())),
+				(_head.getZ().subtract(vec._head.getZ())));
 	}
 
 	/**
-	 * @name scale
-	 * @param num
-	 * @return Vector
-	 * @description scales vector by scalar and returns result vector
+	 * Creates vector whose values have been multiplied (scaled) by a scalar value
+	 * 
+	 * @param num by which the vector is multiplied
+	 * @return Vector which contains scaled values
 	 */
 	public Vector scale(double num) {
 		return new Vector((_head.getX().scale(num)), (_head.getY().scale(num)), (_head.getZ().scale(num)));
 	}
 
 	/**
-	 * @name dot
-	 * @param _vector
-	 * @return double
-	 * @description returns dot product of vector
+	 * Calculates dot product of two vectors
+	 * 
+	 * @param vec used to calculate dot product
+	 * @return double, result
 	 */
-	public double dot(Vector _vector) {
-		double x = _head.getX().get() * _vector._head.getX().get();
-		double y = _head.getY().get() * _vector._head.getY().get();
-		double z = _head.getZ().get() * _vector._head.getZ().get();
+	public double dot(Vector vec) {
+		double x = _head.getX().get() * vec._head.getX().get();
+		double y = _head.getY().get() * vec._head.getY().get();
+		double z = _head.getZ().get() * vec._head.getZ().get();
 		return x + y + z;
 	}
 
 	/**
-	 * @name cross
-	 * @param _vector
-	 * @return Vector
-	 * @description returns dot product of vector
+	 * Creates vector that is the cross product of two vectors
+	 * 
+	 * @param vec used to create cross product vector
+	 * @return Vector cross product
 	 */
-	public Vector cross(Vector _vector) {
-		Double x = (_head.getY().get()) * (_vector._head.getZ().get())
-				- (_head.getZ().get()) * (_vector._head.getY().get());
-		Double y = (_head.getZ().get()) * (_vector._head.getX().get())
-				- (_head.getX().get()) * (_vector._head.getZ().get());
-		Double z = (_head.getX().get()) * (_vector._head.getY().get())
-				- (_head.getY().get()) * (_vector._head.getX().get());
+	public Vector cross(Vector vec) {
+		Double x = (_head.getY().get()) * (vec._head.getZ().get()) - (_head.getZ().get()) * (vec._head.getY().get());
+		Double y = (_head.getZ().get()) * (vec._head.getX().get()) - (_head.getX().get()) * (vec._head.getZ().get());
+		Double z = (_head.getX().get()) * (vec._head.getY().get()) - (_head.getY().get()) * (vec._head.getX().get());
 		return new Vector(x, y, z);
 	}
 
 	/**
-	 * @name getNormal
-	 * @return Vector
-	 * @description returns normalized vector
+	 * Creates vector that is normalized vector of reference vector
+	 * 
+	 * @return Vector that's normalized
 	 */
-	public Vector normal() {
-		return (scale(1 / _head.distance(new Point3D(0, 0, 0))));
+	public Vector normalized() {
+		return (scale(1 / length()));
 	}
 
+	/**
+	 * Normalizes reference vector
+	 * 
+	 * @return Vector that's normalized
+	 */
+	public void normalize() {
+		this.normalized();
+	}
 	// ***************** Administration ******************** //
 	/**
-	 * @name equals
-	 * @param vec
-	 * @return boolean
-	 * @description checks if two vectors are equal
+	 * Checks if two vectors are equal
+	 * 
+	 * @param vec to be checked if equal to reference vector
+	 * @return equality
 	 */
 	public boolean equals(Object o) {
 		if (this == o)
 			return true;
 		if (o == null)
 			return false;
-		if (!(o instanceof Vector ))
+		if (!(o instanceof Vector))
 			return false;
 		Vector vec = (Vector) o;
 		return _head.equals(vec._head);
 	}
 
 	/**
-	 * @name toString
+	 * Returns vector as string
+	 * 
 	 * @return String
 	 */
 	@Override

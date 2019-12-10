@@ -22,7 +22,7 @@ public class Plane implements Geometry {
 	 */
 	public Plane(Point3D p, Vector normal) {
 		this._p = p;
-		_normal = normal.normal();
+		_normal = normal.normalized();
 	}
 
 	/**
