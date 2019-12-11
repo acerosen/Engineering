@@ -81,7 +81,7 @@ public class VectorTests extends TestCase {
 	public void testEquals() {
 		Vector vec1 = new Vector(55, 6, 0.2);
 		Vector vec2 = new Vector(55, 6, 0.2);
-		Vector vec3 = new Vector(55, 5, 0.1);
+		Vector vec3 = new Vector(55, 6, 0.1);
 		assertTrue(vec1.equals(vec2));
 		assertFalse(vec1.equals(vec3));
 	}
